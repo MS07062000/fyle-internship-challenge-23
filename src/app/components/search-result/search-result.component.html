@@ -1,0 +1,24 @@
+<div>
+    <ng-container *ngIf="searchResult !== null && searchResult.users !== null && errorMessage===null">
+        <ul role="list"
+            class="mx-2 border-solid border-2 border-gray-200 rounded-lg divide-y divide-gray-200">
+            <div *ngFor="let user of searchResult.users">
+                <li class="px-2 py-2" (click)="navigateWithQueryParams(user.login)">
+                    <app-search-result-user-card [UserDetails]="user"></app-search-result-user-card>
+                </li>
+            </div>
+        </ul>
+    </ng-container>
+    <ng-container *ngIf="errorMessage !== null">
+        <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50"
+            role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor" viewBox="0 0 20 20">
+                <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+            <span class="sr-only">Info</span>
+            <span class="font-medium">{{errorMessage}}</span>
+        </div>
+    </ng-container>
+</div>
